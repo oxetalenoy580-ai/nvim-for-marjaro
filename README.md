@@ -31,20 +31,143 @@ lua/
 
 ## Keymaps
 
-| Leader    | Action                        |
-| --------- | ----------------------------- |
-| `<Space>` | Leader key                    |
-| `<leader>e` | Toggle file tree            |
-| `<leader>ff` | Find files (fzf-lua)       |
-| `<leader>fg` | Live grep (fzf-lua)        |
-| `<leader>fb` | Buffers (fzf-lua)           |
-| `<leader>gd` | Go to definition            |
-| `<leader>ca` | Code action                 |
-| `<leader>rn` | Rename                      |
-| `<leader>hs` | Stage hunk                  |
-| `<leader>hr` | Reset hunk                  |
-| `<leader>nn` | New Obsidian note           |
-| `<C-\>`   | Toggle floating terminal      |
+Leader key is `<Space>`.
+
+### Navigation & Motion
+
+| Keys | Mode | Action |
+| ---- | ---- | ------ |
+| `j` / `k` | `n` | Wrap-aware line movement (`gj`/`gk`) |
+| `H` / `L` | `n,v` | Move to start/end of line (`^` / `$`) |
+| `n` / `N` | `n` | Next/prev search result (centered) |
+| `<C-d>` / `<C-u>` | `n` | Half page down/up (centered) |
+| `<C-h>` / `<C-j>` / `<C-k>` / `<C-l>` | `n` | Navigate windows left/down/up/right |
+| `<C-Up>` / `<C-Down>` | `n` | Resize window height ±2 |
+| `<C-Left>` / `<C-Right>` | `n` | Resize window width ±2 |
+
+### Buffer & Window Management
+
+| Keys | Mode | Action |
+| ---- | ---- | ------ |
+| `<leader>bn` | `n` | Next buffer |
+| `<leader>bp` | `n` | Previous buffer |
+| `<leader>sv` | `n` | Vertical split |
+| `<leader>sh` | `n` | Horizontal split |
+
+### File Explorer
+
+| Keys | Mode | Action |
+| ---- | ---- | ------ |
+| `<leader>e` | `n` | Open parent directory (oil.nvim) |
+
+### Fuzzy Finding (fzf-lua)
+
+| Keys | Mode | Action |
+| ---- | ---- | ------ |
+| `<leader>ff` | `n` | Find files |
+| `<leader>fg` | `n` | Live grep |
+| `<leader>fb` | `n` | Switch buffer |
+| `<leader>fh` | `n` | Help tags |
+| `<leader>fx` | `n` | Document diagnostics |
+| `<leader>fX` | `n` | Workspace diagnostics |
+| `<leader>fd` | `n` | LSP definitions |
+| `<leader>fr` | `n` | LSP references |
+| `<leader>ft` | `n` | LSP type definitions |
+| `<leader>fs` | `n` | Document symbols |
+| `<leader>fw` | `n` | Workspace symbols |
+| `<leader>fi` | `n` | LSP implementations |
+
+### LSP
+
+| Keys | Mode | Action |
+| ---- | ---- | ------ |
+| `K` | `n` | Hover documentation |
+| `<leader>gd` | `n` | Go to definition |
+| `<leader>gD` | `n` | Go to definition (vsplit) |
+| `<leader>ca` | `n` | Code action |
+| `<leader>rn` | `n` | Rename symbol |
+| `<leader>D` | `n` | Line diagnostics |
+| `<leader>d` | `n` | Cursor diagnostics |
+| `<leader>nd` | `n` | Next diagnostic |
+| `<leader>pd` | `n` | Previous diagnostic |
+| `<leader>oi` | `n` | Organize imports & format |
+| `<leader>q` | `n` | Open diagnostic list (loclist) |
+| `<leader>dl` | `n` | Show line diagnostics float |
+
+### Completion (nvim-cmp)
+
+| Keys | Mode | Action |
+| ---- | ---- | ------ |
+| `<C-Space>` | `i` | Trigger completion |
+| `<C-j>` / `<C-k>` | `i` | Select next/prev item |
+| `<CR>` | `i,c` | Confirm selection |
+| `<Tab>` / `<S-Tab>` | `i,s,c` | Smart navigation / fallback |
+
+### Git (gitsigns)
+
+| Keys | Mode | Action |
+| ---- | ---- | ------ |
+| `]h` / `[h` | `n` | Next/prev git hunk |
+| `<leader>hs` | `n` | Stage hunk |
+| `<leader>hr` | `n` | Reset hunk |
+| `<leader>hp` | `n` | Preview hunk |
+| `<leader>hb` | `n` | Blame line |
+| `<leader>hB` | `n` | Toggle inline blame |
+| `<leader>hd` | `n` | Diff this |
+
+### Editing
+
+| Keys | Mode | Action |
+| ---- | ---- | ------ |
+| `jk` / `kj` | `i` | Exit insert mode |
+| `<leader>p` | `x` | Paste without yanking |
+| `x` | `n,v` | Delete char (no register) |
+| `xx` | `n` | Delete line (no register) |
+| `<A-j>` / `<A-k>` | `n` | Move line down/up |
+| `<A-j>` / `<A-k>` | `v` | Move selection down/up |
+| `<` / `>` | `v` | Indent and reselect |
+| `J` | `n` | Join lines (preserve cursor) |
+| `<leader>pa` | `n` | Copy full file path |
+| `<leader>c` | `n` | Clear search highlights |
+| `<leader>td` | `n` | Toggle diagnostics |
+
+### Multiple Cursors
+
+| Keys | Mode | Action |
+| ---- | ---- | ------ |
+| `<leader>m` | `n,v` | Toggle / match cursors |
+| `<Esc>` | `n` | Clear multi-cursors |
+
+### Terminal
+
+| Keys | Mode | Action |
+| ---- | ---- | ------ |
+| `<C-\>` | `n,t` | Toggle floating terminal |
+
+### OpenCode AI
+
+| Keys | Mode | Action |
+| ---- | ---- | ------ |
+| `<leader>oa` | `n` | Ask about current buffer |
+| `<leader>oa` | `v` | Ask about visual selection |
+| `<leader>of` | `n` | Fix |
+| `<leader>of` | `v` | Fix selection |
+
+### Obsidian Notes
+
+| Keys | Mode | Action |
+| ---- | ---- | ------ |
+| `<leader>nn` | `n` | New note |
+| `<leader>nf` | `n` | Find note |
+| `<leader>ns` | `n` | Search notes |
+| `<leader>nt` | `n` | Today's daily note |
+| `<leader>nw` | `n` | Switch workspace |
+
+### Python
+
+| Keys | Mode | Action |
+| ---- | ---- | ------ |
+| `<leader>cv` | `n` | Select Python virtual env |
 
 ## Format on save
 

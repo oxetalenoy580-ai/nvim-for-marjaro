@@ -1,10 +1,11 @@
-vim.opt.runtimepath:append(vim.fn.stdpath("data") .. "/site")
+-- vim.opt.runtimepath:append(vim.fn.stdpath("data") .. "/site")
 vim.pack.add({
 	"https://github.com/catppuccin/nvim", -- colorschem
 	"https://www.github.com/lewis6991/gitsigns.nvim",
 	"https://www.github.com/echasnovski/mini.nvim",
 	"https://www.github.com/ibhagwan/fzf-lua", -- search
-	"https://www.github.com/nvim-tree/nvim-tree.lua", -- file explore
+	-- "https://www.github.com/nvim-tree/nvim-tree.lua", -- file explore
+	"https://github.com/stevearc/oil.nvim",
 	{
 		src = "https://github.com/nvim-treesitter/nvim-treesitter",
 		branch = "main",
@@ -41,7 +42,8 @@ require("core.neovide")
 
 require("lsp.lspconfig")
 
-require("plugins.nvim-tree")
+-- require("plugins.nvim-tree")
+require("plugins.oil")
 require("plugins.nvim-treesitter")
 require("plugins.fzf")
 require("plugins.mini")

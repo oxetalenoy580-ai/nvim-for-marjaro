@@ -14,6 +14,9 @@ vim.keymap.set("n", "<leader>c", ":nohlsearch<CR>", { desc = "Clear search highl
 vim.keymap.set("i", "jk", "<ESC>", { silent = true, desc = "Exit insert mode" })
 vim.keymap.set("i", "kj", "<ESC>", { silent = true, desc = "Exit insert mode" })
 
+vim.keymap.set({ "n", "v" }, "H", "^", { desc = "move to start of line" })
+vim.keymap.set({ "n", "v" }, "L", "$", { desc = "move to end of line" })
+
 vim.keymap.set("n", "n", "nzzzv", { desc = "Next search result (centered)" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous search result (centered)" })
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Half page down (centered)" })

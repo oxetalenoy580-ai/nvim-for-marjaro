@@ -48,7 +48,7 @@ local function lsp_on_attach(ev)
 	local opts = { noremap = true, silent = true, buffer = bufnr }
 
 	vim.keymap.set("n", "<leader>gd", function()
-		require("fzf-lua").lsp_definitions({ jump_to_single_result = true })
+		require("fzf-lua").lsp_definitions({ jump1 = true })
 	end, opts)
 
 	vim.keymap.set("n", "<leader>gD", vim.lsp.buf.definition, opts)
@@ -78,7 +78,7 @@ local function lsp_on_attach(ev)
 	vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 
 	vim.keymap.set("n", "<leader>fd", function()
-		require("fzf-lua").lsp_definitions({ jump_to_single_result = true })
+		require("fzf-lua").lsp_definitions({ jump1 = true })
 	end, opts)
 	vim.keymap.set("n", "<leader>fr", function()
 		require("fzf-lua").lsp_references()
@@ -268,6 +268,43 @@ vim.lsp.config("ts_ls", {})
 vim.lsp.config("gopls", {})
 vim.lsp.config("clangd", {})
 
+local jdtls_path = vim.fn.stdpath("data") .. "/mason/packages/jdtls"
+local maven_home = os.getenv("HOME") .. "/.m2"
+vim.lsp.config("jdtls", {
+	settings = {
+		java = {
+			configuration = {
+				updateBuildConfiguration = "automatic",
+			},
+			jdt = {
+				ls = {
+					vmargs = "-javaagent:"
+						.. jdtls_path
+						.. "/lombok.jar -Xmx2G -XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xlog:disable",
+				},
+			},
+			maven = {
+				settings = maven_home .. "/settings.xml",
+			},
+			eclipse = {
+				downloadSources = true,
+			},
+			references = {
+				includeDecompiledSources = true,
+			},
+			implementationsCodeLens = {
+				enabled = true,
+			},
+			referencesCodeLens = {
+				enabled = true,
+			},
+			saveActions = {
+				organizeImports = true,
+			},
+		},
+	},
+})
+
 do
 	-- local luacheck = require("efmls-configs.linters.luacheck")
 	local stylua = require("efmls-configs.formatters.stylua")
@@ -284,7 +321,7 @@ do
 	local shellcheck = require("efmls-configs.linters.shellcheck")
 	local shfmt = require("efmls-configs.formatters.shfmt")
 
-	local cpplint = require("efmls-configs.linters.cpplint")
+	-- local cpplint = require("efmls-configs.linters.cpplint")
 	local clangfmt = require("efmls-configs.formatters.clang_format")
 
 	local go_revive = require("efmls-configs.linters.go_revive")
@@ -313,7 +350,7 @@ do
 		init_options = { documentFormatting = true },
 		settings = {
 			languages = {
-				c = { clangfmt, cpplint },
+				c = { clangfmt },
 				go = { gofumpt, go_revive },
 				cpp = { clangfmt },
 				css = { prettier_d },
@@ -342,6 +379,7 @@ vim.lsp.enable({
 	"bashls",
 	"ts_ls",
 	"gopls",
+	"jdtls",
 	"clangd",
 	"efm",
 })
